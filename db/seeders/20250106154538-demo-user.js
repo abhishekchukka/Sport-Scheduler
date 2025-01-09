@@ -2,20 +2,20 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // await queryInterface.bulkInsert(
-    //   "User",
-    //   [
-    //     {
-    //       name: "John Doe",
-    //       email: "john.d2oe3241@example.com",
-    //       password: "hashedPassword", // Don't forget to hash passwords in real apps
-    //       role: "admin",
-    //       createdAt: new Date(),
-    //       updatedAt: new Date(),
-    //     },
-    //   ],
-    //   {}
-    // );
+    await queryInterface.bulkInsert(
+      "User",
+      [
+        {
+          name: "chukka",
+          email: "chukka@gmail.com",
+          password: "chukka", // Don't forget to hash passwords in real apps
+          role: "admin",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {}
+    );
     // await queryInterface.bulkInsert(
     //   "Sport",
     //   [

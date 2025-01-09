@@ -14,12 +14,22 @@ module.exports = {
     host: "127.0.0.1",
     dialect: "postgres",
   },
-  production: {
-    username: "root",
-    password: null,
-    database: "postgresql://sportsscheduler_9dor_user:AzxVszAWoqTGezJHItdpNOW8nR5lk9uw@dpg-cu00bra3esus73ade410-a.oregon-postgres.render.com/sportsscheduler_9dor",
-    host: "127.0.0.1",
-    dialect: "postgres",
-  },
+  // postgresql://sportsscheduler_9dor_user:AzxVszAWoqTGezJHItdpNOW8nR5lk9uw@dpg-cu00bra3esus73ade410-a/sportsscheduler_9dor
+  
+    production: {
+      username: "sportsscheduler_9dor_user",
+      password: "AzxVszAWoqTGezJHItdpNOW8nR5lk9uw",
+      database: "sportsscheduler_9dor",
+      host: "dpg-cu00bra3esus73ade410-a.oregon-postgres.render.com",
+      dialect: "postgres",
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, // Ensure SSL is enabled
+        },
+      },
+    
+  }
+  
 };
 // console.log(process.env.port);

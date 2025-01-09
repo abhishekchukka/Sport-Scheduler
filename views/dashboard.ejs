@@ -109,15 +109,14 @@
         <div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto h-auto">
             <% sessions.forEach((session) => { %>
-            <div
-              class="p-6 bg-white shadow-lg rounded-lg relative"
-              <% if (new Date(session.date) < new Date()) { %>
-                class="bg-gray-300"
-              <% } else if (session.currentParticipantCount >= session.participants) { %>
-                class="bg-gray-300"
-              <% } else { %>
-                class="bg-white"
-              <% } %>
+              <div
+              class="
+                p-6 
+                shadow-lg 
+                rounded-lg 
+                relative 
+                <%= (new Date(session.date) < new Date() || session.currentParticipantCount >= session.participants) ? 'bg-gray-300 text-gray-500' : 'bg-white' %>
+              "
             >
               <!-- Join/Unjoin Button at Top-Right -->
               <% if (session.isParticipant) { %>
@@ -142,17 +141,17 @@
                   </button>
                 </form>
               <% } %>
-      
+            
               <!-- Session Details -->
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              <h3 class="text-xl font-semibold mb-2">
                 <span class="text-yellow-500">Session ID: <%= session.id %></span> - <%= session.sportName %>
               </h3>
-              <p class="text-sm text-gray-600">Creator: <%= session.creatorName.name %></p>
-              <p class="text-sm text-gray-600">Venue: <%= session.venue %></p>
-              <p class="text-sm text-gray-600">Date: <%= new Date(session.date).toLocaleString() %></p>
-              <p class="text-sm text-gray-600">Max Participants: <%= session.participants %></p>
-              <p class="text-sm text-gray-600">Participants: <%= session.currentParticipantCount %></p>
-      
+              <p class="text-sm">Creator: <%= session.creatorName.name %></p>
+              <p class="text-sm">Venue: <%= session.venue %></p>
+              <p class="text-sm">Date: <%= new Date(session.date).toLocaleString() %></p>
+              <p class="text-sm">Max Participants: <%= session.participants %></p>
+              <p class="text-sm">Participants: <%= session.currentParticipantCount %></p>
+            
               <div class="flex justify-between mt-4">
                 <% if (user.role === "admin" || user.id === session.creatorName.id) { %>
                   <a
@@ -172,6 +171,7 @@
                 <% } %>
               </div>
             </div>
+            
             <% }); %>
           </div>
         </div>

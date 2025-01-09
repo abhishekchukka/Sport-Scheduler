@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require("express");
 const authRouter = require("./route/auth");
 const sportRouter = require("./route/sport");
@@ -11,8 +12,12 @@ const passport = require("./passportconfig");
 const getSportsWithCreators = require("./controller/getSportsWithUsers");
 const renderDashboard = require("./controller/rederDashBoard");
 const renderReport = require("./controller/renderReport");
+// const { Sequelize } = require("sequelize");
 const app = express();
 const port = process.env.port;
+
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -56,3 +61,4 @@ app.use("*", (req, res) => {
 app.listen(port, () => {
   console.log("server listening..");
 });
+// Create a new Sequelize instance (using your environment variable URL)
