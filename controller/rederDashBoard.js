@@ -1,7 +1,7 @@
 const Sport = require("../db/models/sport");
 const Session = require("../db/models/session");
 const User = require("../db/models/user");
-const SessionParticipants = require("../db/models/sessionParticipants");
+const SessionParticipants = require("../db/models/sessionparticipants");
 
 const renderDashboard = async (req, res) => {
   try {

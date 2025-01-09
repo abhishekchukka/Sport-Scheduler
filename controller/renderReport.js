@@ -1,5 +1,5 @@
 const Session = require('../db/models/session');
-const SessionParticipants = require('../db/models/sessionParticipants');
+const SessionParticipants = require('../db/models/sessionparticipants');
 const User= require('../db/models/user')
 const renderReport = async (req, res) => {
     try {
