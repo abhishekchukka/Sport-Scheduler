@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav
+      class="bg-white shadow-md py-4 px-6 mx-6 rounded-lg flex justify-between items-center"
+    >
+      <div class="text-xl font-semibold text-gray-800">Home</div>
+      <div class="flex gap-4">
+        <a href="/signup" class="text-gray-700 hover:text-gray-900">Sign In</a>
+        <a href="/login" class="text-gray-700 hover:text-gray-900">Login</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="mt-8 mx-6 p-6 bg-white shadow-lg rounded-lg gap-8">
+      <!-- Left Section (Image Placeholder) -->
+      <div class="w-full">
+        <div
+          class="h-96 bg-gray-200 rounded-lg flex items-center justify-center"
+        >
+          <span class="text-gray-500">Template Image</span>
+        </div>
+      </div>
+
+      <!-- Right Section (Routes & Process) -->
+      <div class="space-y-6 flex flex-col items-center py-6">
+        <h2 class="text-2xl font-bold text-gray-800">How to Use</h2>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-user"></i>
+            </div>
+            <span class="text-gray-700">Sign Up for an account</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <span class="text-gray-700">Start exploring sessions</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <div
+              class="w-10 h-10 bg-yellow-500 text-white rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-calendar"></i>
+            </div>
+            <span class="text-gray-700">Join or create sports sessions</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Reports</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="bg-gray-100  min-h-screen">
+    <!-- Navbar -->
+    <nav
+    class="bg-white shadow-sm py-4 px-6 mx-6 rounded-lg flex justify-between items-center"
+  >
+    <div class="text-xl font-semibold text-gray-800">
+      Report <span class="text-lg font-thin">/~<%= user.name %></span>
+    </div>
+    <div class="flex gap-4">
+      <a href="/dashboard" class="text-gray-700 hover:text-gray-900">Dashboard</a>
+      <a href="/logout" class="text-red-600 hover:text-red-300">Logout</a>
+    </div>
+  </nav>
+
+    <!-- Message -->
+    <section class="mt-12 text-center">
+      <h1 class="text-3xl font-bold text-gray-700 mb-4">No Reports Yet</h1>
+      <p class="text-gray-600">
+        You haven't created any sessions yet. Create one to see the reports here.
+      </p>
+      <a
+        href="/dashboard"
+        class="mt-6 inline-block bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600"
+        >Go to Dashboard</a
+      >
+    </section>
+  </body>
+</html>

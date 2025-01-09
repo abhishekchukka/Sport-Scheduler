@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="bg-gray-100  min-h-screen overflow-y-auto">
+    <!-- Navbar -->
+    <nav
+      class="bg-white shadow-sm py-4 px-6 mx-6 rounded-lg flex justify-between items-center"
+    >
+      <div class="text-xl font-semibold text-gray-800">
+        Dashboard <span class="text-lg font-thin">/~<%= user.name %></span>
+      </div>
+      <div class="flex gap-4">
+        <a href="/reports" class="text-gray-700 hover:text-gray-900">Reports</a>
+        <a href="/logout" class="text-red-600 hover:text-red-300">Logout</a>
+      </div>
+    </nav>
+
+    <main class="p-6 space-y-4 bg-gray-100">
+      <!-- Sports Section -->
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Sports</h2>
+
+        <!-- Sports List -->
+        <div class="flex space-x-4 overflow-x-auto p-6">
+          <% sports.forEach((sport) => { %>
+          <div
+            class="relative p-6 bg-white flex min-w-[250px] max-w-[300px] flex-col justify-between shadow-xl rounded-lg text-center "
+          >
+            <h3 class="font-semibold text-lg text-gray-800 truncate"><%= sport.name %></h3>
+            <p class="text-sm text-gray-600 mt-2">Created by: <%= sport.creatorName %></p>
+        
+            <% if (user.role === "admin") { %>
+            <a
+              href="sports/remove/<%= sport.id %>"
+              class="absolute top-4 right-4 p-2 rounded-full text-white bg-red-600 hover:bg-red-500 transition-colors transform hover:scale-110"
+              title="Delete Sport"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </a>
+            <% } %>
+          </div>
+          <% }); %>
+        </div>
+        
+
+        <!-- Add More Button -->
+        <% if (user.role === "admin") { %>
+        <button
+          onclick="toggleSportForm()"
+          class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Add More
+        </button>
+        <% } %>
+
+        <!-- Hidden Sport Form -->
+        <div
+          id="sportForm"
+          class="p-4 bg-white shadow rounded w-80 mt-4 hidden"
+        >
+          <form action="/sports" method="POST" class="flex flex-col gap-4">
+            <div>
+              <label
+                for="sportName"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Sport Name
+              </label>
+              <input
+                type="text"
+                id="sportName"
+                name="name"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
+                placeholder="Enter sport name"
+              />
+            </div>
+            <button
+              type="submit"
+              class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+            >
+              Add Sport
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Sessions Section -->
+      <section class="py-6">
+        <h2 class="text-3xl font-semibold mb-4 text-gray-800">Sessions</h2>
+        <div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto h-auto">
+            <% sessions.forEach((session) => { %>
+            <div
+              class="p-6 bg-white shadow-lg rounded-lg relative"
+              <% if (new Date(session.date) < new Date()) { %>
+                class="bg-gray-300"
+              <% } else if (session.currentParticipantCount >= session.participants) { %>
+                class="bg-gray-300"
+              <% } else { %>
+                class="bg-white"
+              <% } %>
+            >
+              <!-- Join/Unjoin Button at Top-Right -->
+              <% if (session.isParticipant) { %>
+                <form method="post" action="/session/leave/<%= session.id %>">
+                  <button
+                    class="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 focus:outline-none transition-colors"
+                    type="submit"
+                  >
+                    Unjoin
+                  </button>
+                </form>
+              <% } else { %>
+                <form method="post" action="/session/join/<%= session.id %>">
+                  <button
+                    class="absolute top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 focus:outline-none transition-colors"
+                    type="submit"
+                    <% if (session.currentParticipantCount >= session.participants || new Date(session.date) < new Date()) { %> 
+                      hidden
+                    <% } %>
+                  >
+                    Join
+                  </button>
+                </form>
+              <% } %>
+      
+              <!-- Session Details -->
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                <span class="text-yellow-500">Session ID: <%= session.id %></span> - <%= session.sportName %>
+              </h3>
+              <p class="text-sm text-gray-600">Creator: <%= session.creatorName.name %></p>
+              <p class="text-sm text-gray-600">Venue: <%= session.venue %></p>
+              <p class="text-sm text-gray-600">Date: <%= new Date(session.date).toLocaleString() %></p>
+              <p class="text-sm text-gray-600">Max Participants: <%= session.participants %></p>
+              <p class="text-sm text-gray-600">Participants: <%= session.currentParticipantCount %></p>
+      
+              <div class="flex justify-between mt-4">
+                <% if (user.role === "admin" || user.id === session.creatorName.id) { %>
+                  <a
+                    href="/session/<%= session.id %>"
+                    class="text-blue-600 hover:underline transition-colors"
+                  >
+                    Edit
+                  </a>
+                <% } %>
+                <% if (user.role === "admin" || user.id === session.creatorName.id) { %>
+                  <a
+                    href="/session/delete/<%= session.id %>"
+                    class="text-red-600 hover:underline transition-colors"
+                  >
+                    Delete
+                  </a>
+                <% } %>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+      
+      <a
+      href="/session"
+      class="block   bg-green-500 text-white text-center px-6 py-3 rounded hover:bg-green-600 w-52"
+    >
+      Create a Session
+    </a>
+    
+    </main>
+   
+  </body>
+  <script>
+    function toggleSportForm() {
+      const form = document.getElementById("sportForm");
+      form.classList.toggle("hidden");
+    }
+  </script>
+  <!-- <script>
+    // Attach a listener to your form submission
+    document.addEventListener("DOMContentLoaded", () => {
+      const forms = document.querySelectorAll("form[action^='/session/join/']");
+      forms.forEach((form) => {
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault(); // Prevent default form submission
+
+          const action = form.action;
+          try {
+            const response = await fetch(action, {
+              method: "POST",
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+              alert(data.message); // Show the error as an alert
+            } else {
+              alert("Successfully joined the session!");
+              location.reload(); // Reload the page to reflect changes
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("An unexpected error occurred.");
+          }
+        });
+      });
+    });
+  </script> -->
+</html>

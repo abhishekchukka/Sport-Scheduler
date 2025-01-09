@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Typing animation */
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .typing-text {
+        border-right: 2px solid white;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        display: inline-block;
+        animation: typing 2s steps(20, end) infinite,
+          blink 0.5s step-end infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Signup Form -->
+    <div class="bg-white bg-opacity-90 shadow-lg rounded-lg p-6 w-96">
+      <h1 class="text-2xl font-semibold text-center text-gray-700 mb-4">
+        <span class="typing-text">Welcome to Our Platform!</span>
+      </h1>
+      <form action="/signup" method="POST" class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-600"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            placeholder="Enter your full name"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-600"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-600"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition duration-200"
+        >
+          Sign Up
+        </button>
+      </form>
+      <p class="text-center text-sm text-gray-500 mt-4">
+        Already have an account?
+        <a href="/login" class="text-blue-500 hover:underline">Login</a>
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Session</title>
+    <link rel="stylesheet" href="/css/output.css" />
+    <script>
+      // This function will fill in the sport name when a sport is selected
+      function fillSportValue() {
+        const sportSelect = document.getElementById("sportSelect");
+        const sportInput = document.getElementById("sport");
+        sportInput.value = sportSelect.options[sportSelect.selectedIndex].text;
+      }
+    </script>
+  </head>
+  <body class="bg-gray-100 flex flex-col items-center justify-center space-y-3 min-h-screen">
+    <h1 class="text-center text-4xl p-3 font-semibold "> Create Session</h1>
+    <section class="flex flex-col md:flex-row gap-6">
+      <!-- Scrollable Players Div -->
+      <div class="bg-white shadow rounded mx-auto  p-4 w-64 h-96 overflow-y-auto">
+        <h3 class="text-xl font-semibold mb-4">Available Players</h3>
+        <ul>
+          <% players.forEach((player) => { %>
+          <li class="py-2 border-b">
+            <span class="font-medium">ID: <%= player.id %></span>
+            <span class="ml-2 text-gray-700"><%= player.name %></span>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+
+      <!-- Session Form -->
+      <form
+        method="post"
+        action="/session"
+        class="bg-white shadow rounded p-6 w-96 flex flex-col gap-4"
+      >
+        <!-- Date Input -->
+        <div>
+          <label for="date" class="block text-gray-700 font-medium mb-1">Date</label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            required
+          />
+        </div>
+
+        <!-- Time Input -->
+        <div>
+          <label for="time" class="block text-gray-700 font-medium mb-1">Time</label>
+          <input
+            type="time"
+            id="time"
+            name="time"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            required
+          />
+        </div>
+
+        <!-- Venue Input -->
+        <div>
+          <label for="venue" class="block text-gray-700 font-medium mb-1">Venue</label>
+          <input
+            type="text"
+            id="venue"
+            name="venue"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            required
+          />
+        </div>
+
+        <!-- Maximum Participants -->
+        <div>
+          <label for="participants" class="block text-gray-700 font-medium mb-1"
+            >Maximum Participants</label
+          >
+          <input
+            type="number"
+            id="participants"
+            name="participants"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            min="1"
+            required
+          />
+        </div>
+
+        <!-- Player IDs Input -->
+        <div>
+          <label for="playerIds" class="block text-gray-700 font-medium mb-1"
+            >Player IDs (Comma-separated)</label
+          >
+          <input
+            type="text"
+            id="playerIds"
+            name="playerIds"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            placeholder="e.g., 1,2,3"
+            required
+          />
+        </div>
+
+        <!-- Sport Dropdown -->
+        <div>
+          <label for="sport" class="block text-gray-700 font-medium mb-1">Sport</label>
+          <input
+            type="text"
+            id="sport"
+            name="sportName"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            disabled
+            required
+          />
+        </div>
+
+        <div>
+          <label for="sportSelect" class="block text-gray-700 font-medium mb-1"
+            >Select Sport</label
+          >
+          <select
+            id="sportSelect"
+            name="sportId"
+            class="w-full px-3 py-2 border rounded text-gray-700"
+            onchange="fillSportValue()"
+            required
+          >
+            <option value="" disabled selected>Select a sport</option>
+            <% sports.forEach((sport) => { %>
+            <option value="<%= sport.id %>"><%= sport.name %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Create Session
+          </button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
