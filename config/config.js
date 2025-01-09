@@ -17,7 +17,7 @@ module.exports = {
   production: {
     username: "root",
     password: null,
-    database: process.env.DATABASE_URL,
+    database: "postgresql://sportsscheduler_9dor_user:AzxVszAWoqTGezJHItdpNOW8nR5lk9uw@dpg-cu00bra3esus73ade410-a.oregon-postgres.render.com/sportsscheduler_9dor",
     host: "127.0.0.1",
     dialect: "postgres",
   },
