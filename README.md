@@ -4,7 +4,7 @@
 The Sports Session Scheduler is a web application that allows users to manage sports sessions. It enables users to create, join, and leave sessions, as well as manage sports and view reports. The application is designed for both administrators and regular users, with special privileges for the admin to create and delete sports and sessions.
 
 ### Deployed Application Link
-[Sports Session Scheduler](https://sport-scheduler-pz43.onrender.com/dashboard)
+[Sports Session Scheduler](https://sport-scheduler-pz43.onrender.com/)
 
 ## Features
 - **User Authentication**: Secure login system with role-based access (Admin and User).
